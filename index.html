@@ -32,7 +32,7 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
 <p>Bangalore → Chennai</p>
 <p>Chennai → Coimbatore</p>
 </div>
-<p class="footer">Created by nainar and thirushanth</p>
+<p class="footer">Created by nainar and thirushanth </p>
 </div><!-- ROUTES --><div id="routes" class="page">
 <div class="card">
 <h3>Available Routes</h3>
@@ -114,5 +114,46 @@ return;
 let dist = distance(c1.lat, c1.lon, c2.lat, c2.lon);
 output.innerText = `Distance: ${dist} km`;
 }
+</script><canvas id="confetti"></canvas>
+
+<script>
+// Confetti animation
+const canvas = document.getElementById('confetti');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let pieces = [];
+for(let i=0;i<100;i++){
+pieces.push({
+x: Math.random()*canvas.width,
+y: Math.random()*canvas.height - canvas.height,
+r: Math.random()*6+4,
+d: Math.random()*100
+});
+}
+
+function drawConfetti(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle = "#facc15";
+pieces.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fill();
+});
+updateConfetti();
+}
+
+function updateConfetti(){
+pieces.forEach(p=>{
+p.y += 2;
+if(p.y > canvas.height){
+p.y = -10;
+p.x = Math.random()*canvas.width;
+}
+});
+}
+
+setInterval(drawConfetti,20);
 </script></body>
 </html>
