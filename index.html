@@ -60,10 +60,15 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
 <p>❓ Help & Support</p>
 </div>
 </div><!-- FLOATING SHEET --><div id="sheet" class="floating">
+<div style="display:flex;justify-content:space-between;align-items:center">
 <h3>Plan Your Trip ✈️</h3>
+<button onclick="toggleSheet()" style="background:red;color:white;border:none;border-radius:8px;padding:5px 10px">X</button>
+</div>
 <input id="from" placeholder="From">
 <input id="to" placeholder="To">
 <div class="button" onclick="getDistance()">Search Distance</div>
+<div id="output" class="result"></div>
+</div>
 <div id="output" class="result"></div>
 </div><!-- NAV --><div class="nav">
 <button onclick="show('home')">Home</button>
