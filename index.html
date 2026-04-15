@@ -2,7 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Travel App Full</title>
+<title>Smart Travel App</title>
 <style>
 body{margin:0;font-family:'Segoe UI',sans-serif;background:#0f172a;color:#fff}
 .header{padding:15px;text-align:center;background:#020617}
@@ -14,12 +14,14 @@ body{margin:0;font-family:'Segoe UI',sans-serif;background:#0f172a;color:#fff}
 .nav button{background:none;border:none;color:#94a3b8}
 .floating{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);width:90%;max-width:400px;background:#fff;color:#000;border-radius:20px;padding:15px;box-shadow:0 10px 30px rgba(0,0,0,0.3);display:none}
 input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #ccc}
-.result{margin-top:10px;font-weight:bold}
+.result{margin-top:10px;padding:10px;background:#10b981;border-radius:10px;color:white;font-weight:bold;text-align:center}
+.footer{text-align:center;margin-top:20px;font-size:12px;color:#94a3b8}
 </style>
 </head>
-<body><div class="header">🚀 Travel Pro</div><!-- HOME --><div id="home" class="page active">
+<body><div class="header">🚀 Smart Travel App</div><!-- HOME --><div id="home" class="page active">
 <div class="card">
-<h3>Quick Actions</h3>
+<h2>Welcome 👋</h2>
+<p>Smart Travel Assistant</p>
 <div class="button" onclick="toggleSheet()">Plan Trip</div>
 <div class="button">Check Routes</div>
 <div class="button">Live Crowd</div>
@@ -30,6 +32,7 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
 <p>Bangalore → Chennai</p>
 <p>Chennai → Coimbatore</p>
 </div>
+<p class="footer">Created by Mohamed Vafeek</p>
 </div><!-- ROUTES --><div id="routes" class="page">
 <div class="card">
 <h3>Available Routes</h3>
@@ -67,8 +70,6 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
 <input id="from" placeholder="From">
 <input id="to" placeholder="To">
 <div class="button" onclick="getDistance()">Search Distance</div>
-<div id="output" class="result"></div>
-</div>
 <div id="output" class="result"></div>
 </div><!-- NAV --><div class="nav">
 <button onclick="show('home')">Home</button>
