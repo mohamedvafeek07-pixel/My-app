@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +19,12 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
 .footer{text-align:center;margin-top:20px;font-size:12px;color:#94a3b8}
 </style>
 </head>
-<body><div class="header">🚀 Smart Travel App</div><!-- HOME --><div id="home" class="page active">
+<body>
+
+<div class="header">🚀 Smart Travel App</div>
+
+<!-- HOME -->
+<div id="home" class="page active">
 <div class="card">
 <h2>Welcome 👋</h2>
 <p>Smart Travel Assistant</p>
@@ -32,29 +38,41 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
 <p>Bangalore → Chennai</p>
 <p>Chennai → Coimbatore</p>
 </div>
-<p class="footer">Created by nainar wafiq </p>
-</div><!-- ROUTES --><div id="routes" class="page">
+<p class="footer">Created by Mohamed Vafeek</p>
+</div>
+
+<!-- ROUTES -->
+<div id="routes" class="page">
 <div class="card">
 <h3>Available Routes</h3>
 <p>🚌 Chennai → Bangalore (6h)</p>
 <p>🚆 Chennai → Madurai (8h)</p>
 <p>🚇 Local Metro (30min)</p>
 </div>
-</div><!-- ALERTS --><div id="alerts" class="page">
+</div>
+
+<!-- ALERTS -->
+<div id="alerts" class="page">
 <div class="card">
 <h3>Travel Alerts</h3>
 <p>⚠️ Bus delayed by 15 mins</p>
 <p>⚠️ Train rescheduled</p>
 <p>⚠️ Metro maintenance at 8PM</p>
 </div>
-</div><!-- CROWD --><div id="crowd" class="page">
+</div>
+
+<!-- CROWD -->
+<div id="crowd" class="page">
 <div class="card">
 <h3>Live Crowd Status</h3>
 <p>Bus 120 - Medium</p>
 <p>Train A - High</p>
 <p>Metro Line 2 - Low</p>
 </div>
-</div><!-- SETTINGS --><div id="settings" class="page">
+</div>
+
+<!-- SETTINGS -->
+<div id="settings" class="page">
 <div class="card">
 <h3>Settings</h3>
 <p>🔔 Notifications</p>
@@ -62,7 +80,10 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
 <p>🌙 Dark Mode</p>
 <p>❓ Help & Support</p>
 </div>
-</div><!-- FLOATING SHEET --><div id="sheet" class="floating">
+</div>
+
+<!-- FLOATING SHEET -->
+<div id="sheet" class="floating">
 <div style="display:flex;justify-content:space-between;align-items:center">
 <h3>Plan Your Trip ✈️</h3>
 <button onclick="toggleSheet()" style="background:red;color:white;border:none;border-radius:8px;padding:5px 10px">X</button>
@@ -71,13 +92,18 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
 <input id="to" placeholder="To">
 <div class="button" onclick="getDistance()">Search Distance</div>
 <div id="output" class="result"></div>
-</div><!-- NAV --><div class="nav">
+</div>
+
+<!-- NAV -->
+<div class="nav">
 <button onclick="show('home')">Home</button>
 <button onclick="show('routes')">Routes</button>
 <button onclick="show('alerts')">Alerts</button>
 <button onclick="show('crowd')">Crowd</button>
 <button onclick="show('settings')">Settings</button>
-</div><script>
+</div>
+
+<script>
 function show(page){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(page).classList.add('active');}
 function toggleSheet(){let sheet=document.getElementById('sheet');sheet.style.display = sheet.style.display==='block'?'none':'block';}
 
@@ -114,7 +140,9 @@ return;
 let dist = distance(c1.lat, c1.lon, c2.lat, c2.lon);
 output.innerText = `Distance: ${dist} km`;
 }
-</script><canvas id="confetti" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;"></canvas>
+</script>
+
+<canvas id="confetti" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;"></canvas>
 
 <script>
 const canvas = document.getElementById("confetti");
@@ -163,5 +191,7 @@ function startConfetti() {
 }
 
 window.onload = startConfetti;
-</script></body>
-</html> 
+</script>
+
+</body>
+</html>
