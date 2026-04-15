@@ -1,1 +1,75 @@
-
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel App</title>
+<style>
+body{margin:0;font-family:Arial;background:#eef1f5}
+.header{background:#111;color:#fff;padding:15px;text-align:center}
+.nav{display:flex;justify-content:space-around;background:#fff;padding:10px;position:fixed;bottom:0;width:100%;box-shadow:0 -2px 5px rgba(0,0,0,0.1)}
+.nav button{border:none;background:none;font-size:14px}
+.page{display:none;padding:15px 15px 70px}
+.active{display:block}
+.card{background:#fff;padding:15px;margin:10px 0;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
+.button{background:#007bff;color:#fff;padding:10px;border-radius:8px;text-align:center;margin:8px 0}
+input{width:100%;padding:10px;margin:5px 0;border-radius:8px;border:1px solid #ccc}
+</style>
+</head>
+<body><div class="header">Travel Helper 🚍</div><!-- HOME --><div id="home" class="page active">
+<div class="card">
+<h3>Select Transport</h3>
+<div class="button">Bus</div>
+<div class="button">Train</div>
+<div class="button">Metro</div>
+</div>
+<div class="card">
+<h3>Recent Trips</h3>
+<p>Chennai → Bangalore</p>
+<p>Bangalore → Chennai</p>
+</div>
+</div><!-- PLAN --><div id="plan" class="page">
+<div class="card">
+<h3>Plan Trip</h3>
+<input placeholder="From">
+<input placeholder="To">
+<div class="button">Search</div>
+</div>
+</div><!-- ROUTES --><div id="routes" class="page">
+<div class="card">
+<h3>Routes</h3>
+<p>Chennai → Bangalore</p>
+<p>Bangalore → Chennai</p>
+</div>
+</div><!-- ALERTS --><div id="alerts" class="page">
+<div class="card">
+<h3>Alerts</h3>
+<p>Bus delayed by 15 min</p>
+<p>Route maintenance</p>
+</div>
+</div><!-- CROWD --><div id="crowd" class="page">
+<div class="card">
+<h3>Live Crowd</h3>
+<p>Bus 120 - Medium</p>
+<p>Train A - High</p>
+</div>
+</div><!-- SETTINGS --><div id="settings" class="page">
+<div class="card">
+<h3>Settings</h3>
+<p>Notifications</p>
+<p>Favorites</p>
+<p>Help & Support</p>
+</div>
+</div><div class="nav">
+<button onclick="show('home')">Home</button>
+<button onclick="show('plan')">Plan</button>
+<button onclick="show('routes')">Routes</button>
+<button onclick="show('alerts')">Alerts</button>
+<button onclick="show('crowd')">Crowd</button>
+<button onclick="show('settings')">Settings</button>
+</div><script>
+function show(page){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(page).classList.add('active');
+}
+</script></body>
+</html>
