@@ -2,76 +2,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Travel App Pro</title>
+<title>Travel App Combined</title>
 <style>
 body{margin:0;font-family:'Segoe UI',sans-serif;background:#0f172a;color:#fff}
-.header{padding:20px;font-size:22px;font-weight:bold;text-align:center;background:#020617}
-.page{display:none;padding:15px 15px 80px}
-.active{display:block}
-.card{background:#1e293b;padding:15px;margin:12px 0;border-radius:16px;box-shadow:0 4px 10px rgba(0,0,0,0.3)}
-.button{background:linear-gradient(45deg,#3b82f6,#06b6d4);padding:12px;border-radius:10px;text-align:center;margin:10px 0;font-weight:bold}
-input{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:none;background:#334155;color:#fff}
-.nav{display:flex;justify-content:space-around;position:fixed;bottom:0;width:100%;background:#020617;padding:10px 0}
-.nav button{background:none;border:none;color:#94a3b8;font-size:12px}
-.nav button:hover{color:#38bdf8}
-h3{margin-top:0}
-</style>
+.header{padding:15px;text-align:center;background:#020617}
+.page{padding:15px}
+.card{background:#1e293b;padding:15px;margin:12px 0;border-radius:16px}
+.button{background:#3b82f6;padding:10px;border-radius:10px;text-align:center;margin:8px 0}/* Floating Sheet */ .floating{ position:fixed; bottom:20px; left:50%; transform:translateX(-50%); width:90%; max-width:400px; background:#fff; color:#000; border-radius:20px; padding:15px; box-shadow:0 10px 30px rgba(0,0,0,0.3); }
+
+input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #ccc} </style>
+
 </head>
-<body><div class="header">🚀 Travel Pro</div><div id="home" class="page active">
+<body><div class="header">🚀 Travel Pro</div><div class="page">
 <div class="card">
-<h3>Quick Access</h3>
-<div class="button">🚌 Bus</div>
-<div class="button">🚆 Train</div>
-<div class="button">🚇 Metro</div>
-</div>
-<div class="card">
+<h3>Home</h3>
+<p>Welcome back 👋</p>
+<div class="button" onclick="toggleSheet()">Plan Trip</div>
+</div><div class="card">
 <h3>Recent Trips</h3>
 <p>Chennai → Bangalore</p>
-<p>Bangalore → Chennai</p>
 </div>
-</div><div id="plan" class="page">
-<div class="card">
-<h3>Plan Your Trip</h3>
-<input placeholder="From location">
-<input placeholder="To destination">
-<div class="button">🔍 Search Routes</div>
-</div>
-</div><div id="routes" class="page">
-<div class="card">
-<h3>Available Routes</h3>
-<p>🚌 Chennai → Bangalore</p>
-<p>🚆 Bangalore → Chennai</p>
-</div>
-</div><div id="alerts" class="page">
-<div class="card">
-<h3>⚠️ Alerts</h3>
-<p>Bus delayed by 15 mins</p>
-<p>Metro maintenance ongoing</p>
-</div>
-</div><div id="crowd" class="page">
-<div class="card">
-<h3>👥 Live Crowd</h3>
-<p>Bus 120 - Medium</p>
-<p>Train A - High</p>
-</div>
-</div><div id="settings" class="page">
-<div class="card">
-<h3>⚙️ Settings</h3>
-<p>Notifications</p>
-<p>Favorites</p>
-<p>Help & Support</p>
-</div>
-</div><div class="nav">
-<button onclick="show('home')">Home</button>
-<button onclick="show('plan')">Plan</button>
-<button onclick="show('routes')">Routes</button>
-<button onclick="show('alerts')">Alerts</button>
-<button onclick="show('crowd')">Crowd</button>
-<button onclick="show('settings')">Settings</button>
+</div><!-- FLOATING SHEET (Plan Trip) --><div id="sheet" class="floating" style="display:none">
+<h3>Plan Your Trip ✈️</h3>
+<input placeholder="From">
+<input placeholder="To">
+<div class="button">Search</div>
 </div><script>
-function show(page){
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-document.getElementById(page).classList.add('active');
+function toggleSheet(){
+let sheet = document.getElementById('sheet');
+sheet.style.display = sheet.style.display === 'none' ? 'block' : 'none';
 }
 </script></body>
 </html>
