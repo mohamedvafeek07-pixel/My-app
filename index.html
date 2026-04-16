@@ -19,35 +19,86 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
 .result{margin-top:10px;padding:10px;background:#10b981;border-radius:10px;color:white;font-weight:bold;text-align:center}
 .footer{text-align:center;margin-top:20px;font-size:12px;color:#94a3b8}
 
-/* 🔥 Intro Eye Flash */
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+/* 🔥 INTRO ANIMATION */
+#eyeFlash{
+  position:fixed;
+  inset:0;
+  background:black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  animation: zoomOut 2s ease-out forwards;
+}
+
+/* cinematic zoom */
+@keyframes zoomOut {
+  0% { transform: scale(1.6); opacity:1; }
+  70% { transform: scale(1); opacity:1; }
+  100% { opacity:0; visibility:hidden; }
+}
+
+/* eye */
+.eye{
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  background: radial-gradient(circle, #ff0000 30%, #000 80%);
+  box-shadow: 0 0 40px red;
+  position:relative;
+  animation: spin 1.5s ease-in-out;
+}
+
+/* spin */
+@keyframes spin{
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* center pupil */
+.core{
+  width:30px;
+  height:30px;
+  background:black;
+  border-radius:50%;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+/* tomoe */
+.tomoe{
+  width:18px;
+  height:18px;
+  background:black;
+  border-radius:50%;
+  position:absolute;
+}
+
+.t1{
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.t2{
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🔥 2-second intro effect -->
-<div id="eyeFlash" style="
-position:fixed;
-inset:0;
-display:flex;
-align-items:center;
-justify-content:center;
-background:black;
-z-index:9999;
-">
-  <div style="
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    background: radial-gradient(circle, red 25%, black 70%);
-    box-shadow: 0 0 40px red;
-    animation: pulse 0.3s infinite;
-  "></div>
+<!-- 🔥 INTRO -->
+<div id="eyeFlash">
+  <div class="eye">
+    <div class="core"></div>
+    <div class="tomoe t1"></div>
+    <div class="tomoe t2"></div>
+  </div>
 </div>
 
 <div class="header">🚀 Smart Travel App</div>
@@ -111,7 +162,7 @@ z-index:9999;
 </div>
 </div>
 
-<!-- FLOATING SHEET -->
+<!-- FLOATING -->
 <div id="sheet" class="floating">
 <div style="display:flex;justify-content:space-between;align-items:center">
 <h3>Plan Your Trip ✈️</h3>
@@ -179,11 +230,11 @@ async function getDistance(){
   output.innerText = `Distance: ${dist} km`;
 }
 
-/* 🔥 2-second intro effect control */
-window.onload = function () {
-  setTimeout(() => {
-    document.getElementById("eyeFlash").style.display = "none";
-  }, 2000);
+/* 🔥 intro timing */
+window.onload = function(){
+  setTimeout(()=>{
+    document.getElementById("eyeFlash").style.display="none";
+  },2000);
 };
 </script>
 
