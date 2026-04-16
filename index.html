@@ -19,7 +19,7 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
 .result{margin-top:10px;padding:10px;background:#10b981;border-radius:10px;color:white;font-weight:bold;text-align:center}
 .footer{text-align:center;margin-top:20px;font-size:12px;color:#94a3b8}
 
-/* 🌌 BACKGROUND PULSE */
+/* 🔥 INTRO */
 #eyeFlash{
   position:fixed;
   inset:0;
@@ -31,7 +31,6 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
   animation: fadeOut 2s ease forwards;
 }
 
-/* FINAL EXIT */
 @keyframes fadeOut{
   0% { opacity:1; transform: scale(1.4); }
   70% { opacity:1; transform: scale(1); }
@@ -43,30 +42,20 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
   width:170px;
   height:170px;
   border-radius:50%;
-  background: radial-gradient(circle, #ff0000 20%, #000 80%);
+  background: radial-gradient(circle, #ff0000 25%, #000 80%);
   position:relative;
   box-shadow:
-    0 0 20px red,
-    0 0 60px rgba(255,0,0,0.6),
-    0 0 120px rgba(255,0,0,0.3);
-
-  /* build-up + spin */
+    0 0 25px red,
+    0 0 70px rgba(255,0,0,0.6),
+    0 0 130px rgba(255,0,0,0.3);
   animation: buildSpin 2s ease-in-out;
 }
 
-/* BUILD-UP + ROTATION */
+/* build-up + spin */
 @keyframes buildSpin{
   0% { transform: scale(0.5) rotate(0deg); filter: brightness(0.5); }
   40% { transform: scale(1) rotate(0deg); filter: brightness(1.2); }
   100% { transform: scale(1) rotate(360deg); filter: brightness(1); }
-}
-
-/* inner ring */
-.ring{
-  position:absolute;
-  inset:25px;
-  border-radius:50%;
-  border:3px solid rgba(255,0,0,0.8);
 }
 
 /* center */
@@ -81,21 +70,41 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
   transform:translate(-50%,-50%);
 }
 
-/* marks */
+/* optional ring */
+.ring{
+  position:absolute;
+  inset:25px;
+  border-radius:50%;
+  border:3px solid rgba(255,0,0,0.8);
+}
+
+/* 🔥 ORBIT TOMOE (FIXED BALANCED SYSTEM) */
 .mark{
   width:14px;
   height:14px;
   background:black;
   border-radius:50%;
   position:absolute;
+  top:50%;
+  left:50%;
 }
 
-/* balanced positions */
-.m1{ top:15px; left:50%; transform:translateX(-50%); }
-.m2{ bottom:20px; left:20%; }
-.m3{ bottom:20px; right:20%; }
+/* perfect circular orbit */
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(60px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(60px) rotate(-360deg);
+  }
+}
 
-/* 💥 FINAL FLASH */
+/* each dot same orbit, different phase */
+.m1{ animation: orbit 1.5s linear infinite; }
+.m2{ animation: orbit 1.5s linear infinite; animation-delay: -0.5s; }
+.m3{ animation: orbit 1.5s linear infinite; animation-delay: -1s; }
+
+/* flash */
 .flash{
   position:absolute;
   inset:0;
@@ -106,8 +115,8 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
 
 @keyframes flash{
   0% { opacity:0; }
-  80% { opacity:0; }
-  90% { opacity:0.8; }
+  85% { opacity:0; }
+  92% { opacity:0.9; }
   100% { opacity:0; }
 }
 </style>
@@ -121,6 +130,7 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
     <div class="ring"></div>
     <div class="core"></div>
 
+    <!-- ORBIT TOMOE (BALANCED) -->
     <div class="mark m1"></div>
     <div class="mark m2"></div>
     <div class="mark m3"></div>
@@ -258,7 +268,6 @@ async function getDistance(){
   output.innerText = `Distance: ${dist} km`;
 }
 
-/* intro timing */
 window.onload = function(){
   setTimeout(()=>{
     document.getElementById("eyeFlash").style.display="none";
