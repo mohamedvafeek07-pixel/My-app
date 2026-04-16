@@ -104,93 +104,51 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
 </div>
 
 <script>
-function show(page){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(page).classList.add('active');}
-function toggleSheet(){let sheet=document.getElementById('sheet');sheet.style.display = sheet.style.display==='block'?'none':'block';}
+function show(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+}
+
+function toggleSheet(){
+  let sheet=document.getElementById('sheet');
+  sheet.style.display = sheet.style.display==='block'?'none':'block';
+}
 
 async function getCoords(place){
-let res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${place}`);
-let data = await res.json();
-return data[0] ? {lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon)} : null;
+  let res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${place}`);
+  let data = await res.json();
+  return data[0] ? {lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon)} : null;
 }
 
 function distance(lat1, lon1, lat2, lon2){
-let R = 6371;
-let dLat = (lat2-lat1) * Math.PI/180;
-let dLon = (lon2-lon1) * Math.PI/180;
-let a = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2);
-let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-return (R * c).toFixed(2);
+  let R = 6371;
+  let dLat = (lat2-lat1) * Math.PI/180;
+  let dLon = (lon2-lon1) * Math.PI/180;
+  let a = Math.sin(dLat/2)*Math.sin(dLat/2) +
+          Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180) *
+          Math.sin(dLon/2)*Math.sin(dLon/2);
+  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return (R * c).toFixed(2);
 }
 
 async function getDistance(){
-let from = document.getElementById('from').value;
-let to = document.getElementById('to').value;
-let output = document.getElementById('output');
+  let from = document.getElementById('from').value;
+  let to = document.getElementById('to').value;
+  let output = document.getElementById('output');
 
-output.innerText = 'Calculating...';
+  output.innerText = 'Calculating...';
 
-let c1 = await getCoords(from);
-let c2 = await getCoords(to);
+  let c1 = await getCoords(from);
+  let c2 = await getCoords(to);
 
-if(!c1 || !c2){
-output.innerText = 'Location not found ❌';
-return;
-}
-
-let dist = distance(c1.lat, c1.lon, c2.lat, c2.lon);
-output.innerText = `Distance: ${dist} km`;
-}
-</script>
-
-<canvas id="confetti" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;"></canvas>
-
-<script>
-const canvas = document.getElementById("confetti");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let pieces = [];
-
-function startConfetti() {
-  pieces = [];
-  
-  for (let i = 0; i < 100; i++) {
-    pieces.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 6 + 2
-    });
+  if(!c1 || !c2){
+    output.innerText = 'Location not found ❌';
+    return;
   }
 
-  let duration = 1000;
-  let start = Date.now();
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    pieces.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = ["#facc15","#4ade80","#60a5fa","#f472b6"][Math.floor(Math.random()*4)];
-      ctx.fill();
-
-      p.y += 3;
-      if (p.y > canvas.height) p.y = 0;
-    });
-
-    if (Date.now() - start < duration) {
-      requestAnimationFrame(draw);
-    } else {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-  }
-
-  draw();
+  let dist = distance(c1.lat, c1.lon, c2.lat, c2.lon);
+  output.innerText = `Distance: ${dist} km`;
 }
-
-window.onload = startConfetti;
 </script>
 
 </body>
