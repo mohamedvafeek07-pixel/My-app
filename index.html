@@ -28,37 +28,46 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
   align-items:center;
   justify-content:center;
   z-index:9999;
-  animation: zoomOut 2s ease-out forwards;
+  animation: fadeOut 2s ease-out forwards;
 }
 
-/* cinematic zoom */
-@keyframes zoomOut {
-  0% { transform: scale(1.6); opacity:1; }
+@keyframes fadeOut{
+  0% { transform: scale(1.5); opacity:1; }
   70% { transform: scale(1); opacity:1; }
   100% { opacity:0; visibility:hidden; }
 }
 
 /* eye */
 .eye{
-  width:160px;
-  height:160px;
+  width:170px;
+  height:170px;
   border-radius:50%;
-  background: radial-gradient(circle, #ff0000 30%, #000 80%);
-  box-shadow: 0 0 40px red;
+  background: radial-gradient(circle, #ff1a1a 20%, #000 80%);
   position:relative;
-  animation: spin 1.5s ease-in-out;
+  box-shadow:
+    0 0 20px red,
+    0 0 60px rgba(255,0,0,0.5),
+    0 0 120px rgba(255,0,0,0.3);
+  animation: rotate 1.5s ease-in-out;
 }
 
-/* spin */
-@keyframes spin{
+@keyframes rotate{
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* center pupil */
+/* inner ring */
+.ring{
+  position:absolute;
+  inset:25px;
+  border-radius:50%;
+  border:3px solid rgba(255,0,0,0.8);
+}
+
+/* center */
 .core{
-  width:30px;
-  height:30px;
+  width:28px;
+  height:28px;
   background:black;
   border-radius:50%;
   position:absolute;
@@ -67,26 +76,25 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
   transform:translate(-50%,-50%);
 }
 
-/* tomoe */
-.tomoe{
-  width:18px;
-  height:18px;
+/* marks */
+.mark{
+  width:14px;
+  height:14px;
   background:black;
   border-radius:50%;
   position:absolute;
+  animation: float 1.5s infinite ease-in-out;
 }
 
-.t1{
-  top:20px;
-  left:50%;
-  transform:translateX(-50%);
+@keyframes float{
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
-.t2{
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-}
+.m1{ top:15px; left:50%; transform:translateX(-50%); }
+.m2{ bottom:25px; left:20%; }
+.m3{ bottom:25px; right:20%; }
 </style>
 </head>
 
@@ -95,9 +103,11 @@ input{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #c
 <!-- 🔥 INTRO -->
 <div id="eyeFlash">
   <div class="eye">
+    <div class="ring"></div>
     <div class="core"></div>
-    <div class="tomoe t1"></div>
-    <div class="tomoe t2"></div>
+    <div class="mark m1"></div>
+    <div class="mark m2"></div>
+    <div class="mark m3"></div>
   </div>
 </div>
 
@@ -230,7 +240,7 @@ async function getDistance(){
   output.innerText = `Distance: ${dist} km`;
 }
 
-/* 🔥 intro timing */
+/* intro timing */
 window.onload = function(){
   setTimeout(()=>{
     document.getElementById("eyeFlash").style.display="none";
